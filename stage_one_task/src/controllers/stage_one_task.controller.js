@@ -50,10 +50,12 @@ export const getStageOneTask = async (req, res) => {
       status_code,
     };
 
-    return res.status(200).json({
-      message: "success",
-      data,
-    });
+    // return res.status(200).json({
+    //   message: "success",
+    //   data,
+    // });
+
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({
       message: "error",
