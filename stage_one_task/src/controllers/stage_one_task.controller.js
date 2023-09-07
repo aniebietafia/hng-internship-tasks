@@ -5,10 +5,6 @@
  * @returns {object} JSON
  */
 
-/*
-The information required includes: slack name, Current day of the week, Current UTC Time (with validation of +/-2), track, The github url of the file being run, the github url of the full source code, a status code of success.
-*/
-
 export const getStageOneTask = async (req, res) => {
   try {
     const { slack_name, track } = req.query;
@@ -48,11 +44,6 @@ export const getStageOneTask = async (req, res) => {
       github_repo_url,
       status_code,
     };
-
-    // return res.status(200).json({
-    //   message: "success",
-    //   data,
-    // });
 
     return res.status(200).json(data);
   } catch (error) {
