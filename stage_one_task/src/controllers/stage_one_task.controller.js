@@ -26,23 +26,8 @@ export const getStageOneTask = async (req, res) => {
     const current_day_of_the_week = date.getDay();
     const current_day = days_of_the_week[current_day_of_the_week];
 
-    // current UTC time, accurate within a +/-2 minute window.
-    // const current_utc_time = JSON.stringify(date);
-
     // current UTC time in this format 2023-09-07T19:57:18Z
-    const utc_time =
-      date.getUTCFullYear() +
-      "-" +
-      date.getUTCMonth() +
-      "-" +
-      date.getUTCDate() +
-      "T" +
-      date.getUTCHours() +
-      ":" +
-      date.getUTCMinutes() +
-      ":" +
-      date.getUTCSeconds() +
-      "Z";
+    const utc_time = date.toISOString().replace(/\.\d+/, "");
 
     // github url of the file being run
     const github_file_url =
