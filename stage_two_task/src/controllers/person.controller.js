@@ -35,7 +35,14 @@ export const fetchPerson = async (req, res) => {
 
 export const createPerson = async (req, res) => {
   try {
-    const person = await Person.create(req.body);
+    const { name } = req.body;
+
+    // check if name is a string
+    if (typeof name !== "string") {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: "Name must be a string" });
+    }
+
+    const person = await Person.create({ name });
 
     res.status(StatusCodes.CREATED).json({ person });
   } catch (error) {
@@ -55,7 +62,19 @@ export const updatePerson = async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    const person = await Person.findByIdAndUpdate(user_id, req.body, { new: true });
+    const person = await Person.findOne({ _id: user_id });
+
+    if (!person) {
+      return res.status(StatusCodes.NOT_FOUND).json({ message: "Person not found" });
+    }
+
+    // update person
+    person.name = req.body.name;
+
+    // save updated person
+    await person.save();
+
+    // const person = await Person.findByIdAndUpdate(user_id, req.body, { new: true });
 
     res.status(StatusCodes.OK).json({ person });
   } catch (error) {
