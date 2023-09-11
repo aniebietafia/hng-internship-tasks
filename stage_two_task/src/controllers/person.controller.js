@@ -11,16 +11,15 @@ import Person from "../models/person.model.js";
 
 export const fetchPerson = async (req, res) => {
   try {
-    const { user_id } = req.query;
-    const queryObj = {};
+    const { user_id } = req.params;
 
-    if (user_id) {
-      queryObj.name = { $regex: user_id, $options: "i" };
+    const person = await Person.findById(user_id);
+
+    if (!person) {
+      return res.status(StatusCodes.NOT_FOUND).json({ message: "Person not found" });
     }
 
-    const person = await Person.find(queryObj);
-
-    return res.status(StatusCodes.OK).json({ person });
+    res.status(StatusCodes.OK).json({ person });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
   }
@@ -39,6 +38,46 @@ export const createPerson = async (req, res) => {
     const person = await Person.create(req.body);
 
     res.status(StatusCodes.CREATED).json({ person });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
+  }
+};
+
+/**
+ * @description Update a person dynamically
+ * @route PUT /api/user_id
+ * @param {object} req - Request object
+ * @param {object} res - Response object
+ * @returns {object} - Returns a person object
+ */
+
+export const updatePerson = async (req, res) => {
+  try {
+    const { user_id } = req.params;
+
+    const person = await Person.findByIdAndUpdate(user_id, req.body, { new: true });
+
+    res.status(StatusCodes.OK).json({ person });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
+  }
+};
+
+/**
+ * @description Delete a person dynamically
+ * @route DELETE /api/user_id
+ * @param {object} req - Request object
+ * @param {object} res - Response object
+ * @returns {object} - Returns a person object
+ */
+
+export const deletePerson = async (req, res) => {
+  try {
+    const { user_id } = req.params;
+
+    await Person.findByIdAndDelete(user_id);
+
+    res.status(StatusCodes.OK).json({ message: "Person deleted successfully" });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
   }
