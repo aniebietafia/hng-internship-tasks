@@ -51,3 +51,7 @@ The API documentation is available [here](https://documenter.getpostman.com/view
 | `/api`          | `POST`      | Create Person |
 | `/api/:user_id` | `PUT`       | Update Person |
 | `/api/:user_id` | `DELETE`    | Delete Person |
+
+## UML Diagram
+
+<img src="/src/assets/UML class.png">
