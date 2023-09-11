@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import Person from "../models/person.model.js";
 
 /**
- * @description Fetch details of a person
+ * @description Fetch details of a person dynamically
  * @route GET /api/user_id
  * @param {object} req - Request object
  * @param {object} res - Response object
@@ -13,14 +13,9 @@ export const fetchPerson = async (req, res) => {
   try {
     const person = await Person.findById(req.params.user_id);
 
-    // check if person exists
-    if (!person) {
-      throw new Error("Person not found");
-    }
-
     res.status(StatusCodes.OK).json({ person });
   } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({ error: error.message });
+    res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
   }
 };
 
