@@ -11,9 +11,16 @@ import Person from "../models/person.model.js";
 
 export const fetchPerson = async (req, res) => {
   try {
-    const person = await Person.findById(req.params.user_id);
+    const { user_id } = req.query;
+    const queryObj = {};
 
-    res.status(StatusCodes.OK).json({ person });
+    if (user_id) {
+      queryObj.name = { $regex: user_id, $options: "i" };
+    }
+
+    const person = await Person.find(queryObj);
+
+    return res.status(StatusCodes.OK).json({ person });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
   }
