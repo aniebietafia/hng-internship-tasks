@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a REST API with basic CRUD operation. It is built with Node.js, Express.js, and MongoDB using Mongoose.
+This is a simple REST API capable of CRUD operations on a "person" resource, interfacing with a database. It is built with Node.js, Express.js, and MongoDB using Mongoose ODM. The API dynamically handles parameters, such as adding or retrieving a person by name. The API development has UML diagram to represent the system's design and database structure. The entire project is hosted on GitHub, with a well-structured documentation in the repository that outlines request/response formats, setup instructions, and sample API usage.
 
 ## Installation
 
