@@ -13,5 +13,10 @@ app.use(express.urlencoded({ extended: false }));
 // mount routes
 app.use(personRoutes);
 
+// default route
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Welcome to Simple CRUD Person API" });
+});
+
 // export app
 export default app;
