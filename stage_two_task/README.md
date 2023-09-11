@@ -54,4 +54,4 @@ The API documentation is available [here](https://documenter.getpostman.com/view
 
 ## UML Diagram
 
-<img src="/src/assets/UML class.png">
+<img src="./src/assets/UML class.png">
