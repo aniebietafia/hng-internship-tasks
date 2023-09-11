@@ -42,3 +42,12 @@ npm start
 ## API Documentation
 
 The API documentation is available [here](https://documenter.getpostman.com/view/22984536/2s9YC2zDDv)
+
+## API Endpoints
+
+| Endpoint        | HTTP Method | Description   |
+| --------------- | ----------- | ------------- |
+| `/api/:user_id` | `GET`       | Fetch Person  |
+| `/api`          | `POST`      | Create Person |
+| `/api/:user_id` | `PUT`       | Update Person |
+| `/api/:user_id` | `DELETE`    | Delete Person |
