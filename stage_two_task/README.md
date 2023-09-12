@@ -76,6 +76,74 @@ GET /api/Aniebiet Afia
 }
 ```
 
+### Create Person
+
+#### Request
+
+```
+POST /api
+```
+
+#### Response
+
+```
+{
+    "person": {
+        "_id": "65002c97afcb2192478cf8e6",
+        "name": "Aniebiet Afia",
+        "createdAt": "2023-09-12T09:17:11.863Z",
+        "updatedAt": "2023-09-12T09:17:11.863Z",
+        "__v": 0
+    }
+}
+```
+
+### Update Person
+
+#### Request
+
+```
+PUT /api/Aniebiet Afia
+```
+
+#### Request Body
+
+```
+{
+    "name": "Michael Whyte"
+}
+```
+
+#### Response
+
+```
+{
+    "person": {
+        "_id": "65002c97afcb2192478cf8e6",
+        "name": "Michael Whyte",
+        "createdAt": "2023-09-12T09:17:11.863Z",
+        "updatedAt": "2023-09-12T09:33:42.186Z",
+        "__v": 0
+    }
+}
+```
+
+### Delete Person
+
+#### Request
+
+```
+DELETE /api/Aniebiet Afia
+```
+
+#### Response
+
+```
+{
+    "message": "Person deleted successfully"
+}
+```
+
 ## UML Diagram
 
 <img src="./src/assets/UML class.png">
