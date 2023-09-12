@@ -52,6 +52,30 @@ The API documentation is available [here](https://documenter.getpostman.com/view
 | `/api/:user_id` | `PUT`       | Update Person |
 | `/api/:user_id` | `DELETE`    | Delete Person |
 
+## Sample Request/Response
+
+### Fetch Person
+
+#### Request
+
+```
+GET /api/Aniebiet Afia
+```
+
+#### Response
+
+```
+{
+    "person": {
+        "_id": "65002c97afcb2192478cf8e6",
+        "name": "Aniebiet Afia",
+        "createdAt": "2023-09-12T09:17:11.863Z",
+        "updatedAt": "2023-09-12T09:17:11.863Z",
+        "__v": 0
+    }
+}
+```
+
 ## UML Diagram
 
 <img src="./src/assets/UML class.png">
