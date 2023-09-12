@@ -58,7 +58,9 @@ The API documentation is available [here](https://documenter.getpostman.com/view
 
 #### Request
 
-`GET /api/Aniebiet Afia`
+```
+GET /api/Aniebiet Afia
+```
 
 #### Response
 
