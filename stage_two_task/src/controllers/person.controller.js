@@ -13,7 +13,7 @@ export const fetchPerson = async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    const person = await Person.findById(user_id);
+    const person = await Person.findOne({ name: user_id });
 
     if (!person) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: "Person not found" });
@@ -42,9 +42,17 @@ export const createPerson = async (req, res) => {
       return res.status(StatusCodes.BAD_REQUEST).json({ message: "Name must be a string" });
     }
 
-    const person = await Person.create({ name });
+    const person = await Person.findOne({ name });
 
-    res.status(StatusCodes.CREATED).json({ person });
+    if (person) {
+      return res.status(StatusCodes.CONFLICT).json({ message: "Person already exists" });
+    }
+
+    const newPerson = new Person({ name });
+
+    await newPerson.save();
+
+    res.status(StatusCodes.CREATED).json({ newPerson });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
   }
@@ -62,11 +70,19 @@ export const updatePerson = async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    const person = await Person.findOne({ _id: user_id });
+    const person = await Person.findOne({ name: user_id });
 
     if (!person) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: "Person not found" });
     }
+
+    // check if name is a string
+    if (typeof req.body.name !== "string") {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: "Name must be a string" });
+    }
+
+    // use the param name to update the person name
+    // person.name = user_id;
 
     // update person
     person.name = req.body.name;
@@ -94,7 +110,13 @@ export const deletePerson = async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    await Person.findByIdAndDelete(user_id);
+    const person = await Person.findOne({ name: user_id });
+
+    if (!person) {
+      return res.status(StatusCodes.NOT_FOUND).json({ message: "Person not found" });
+    }
+
+    await person.deleteOne();
 
     res.status(StatusCodes.OK).json({ message: "Person deleted successfully" });
   } catch (error) {
