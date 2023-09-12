@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const personSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, unique: true, required: true },
   },
   { timestamps: true }
 );
