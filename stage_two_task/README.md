@@ -59,7 +59,7 @@ The API documentation is available [here](https://documenter.getpostman.com/view
 #### Request
 
 ```
-GET /api/Aniebiet Afia
+GET https://person-crud-api.onrender.com/api/Aniebiet Afia
 ```
 
 #### Response
@@ -81,7 +81,7 @@ GET /api/Aniebiet Afia
 #### Request
 
 ```
-POST /api
+POST https://person-crud-api.onrender.com/api
 ```
 
 #### Response
@@ -103,7 +103,7 @@ POST /api
 #### Request
 
 ```
-PUT /api/Aniebiet Afia
+PUT https://person-crud-api.onrender.com/api/Aniebiet Afia
 ```
 
 #### Request Body
@@ -133,7 +133,7 @@ PUT /api/Aniebiet Afia
 #### Request
 
 ```
-DELETE /api/Aniebiet Afia
+DELETE https://person-crud-api.onrender.com/api/Aniebiet Afia
 ```
 
 #### Response
