@@ -1,23 +1,8 @@
-import path from "path";
 import { Router } from "express";
-import multer from "multer";
-
-// set up storage for uploaded video files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}${path.extname(file.originalname)}`);
-  },
-});
-
-// set up multer
-const upload = multer({ storage });
 
 // import controllers
 import { uploadVideo, getVideo } from "../controller/upload.controller.js";
+import upload from "../config/multer.config.js";
 
 const router = Router();
 

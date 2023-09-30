@@ -1,5 +1,5 @@
-import path from "path";
 import { StatusCodes } from "http-status-codes";
+import cloudinary from "../config/cloudinary.config.js";
 
 /**
  * @description Controller to upload video file to server
@@ -11,17 +11,16 @@ import { StatusCodes } from "http-status-codes";
 
 export const uploadVideo = async (req, res) => {
   try {
-    const baseUrl = `http://localhost:${process.env.PORT}/api/video`;
-    if (!req.file) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        message: "Please upload a video file",
-      });
-    }
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "HNG",
+      resource_type: "video",
+      overwrite: true,
+    });
 
-    const videoUrl = `${baseUrl}/${req.file.filename}`;
     return res.status(StatusCodes.OK).json({
-      message: "Video uploaded successfully",
-      videoUrl,
+      message: "Video uploaded successfully!",
+      // videoUrl: result.secure_url,
+      videoUrl: result.url,
     });
   } catch (error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
