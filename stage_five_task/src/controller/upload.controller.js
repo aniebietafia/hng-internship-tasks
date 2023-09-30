@@ -19,7 +19,7 @@ export const uploadVideo = async (req, res) => {
 
     return res.status(StatusCodes.OK).json({
       message: "Video uploaded successfully!",
-      // videoUrl: result.secure_url,
+      title: req.file.originalname,
       videoUrl: result.url,
     });
   } catch (error) {
