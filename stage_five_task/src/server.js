@@ -3,13 +3,21 @@ import app from "./app.js";
 import { config } from "dotenv";
 config();
 
-// create server
+import connectDB from "./config/database.config.js";
+
 const server = http.createServer(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4333;
 
-// listen for requests
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    server.listen(port, () => {
+      console.log(`Listening on port ${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+startServer();

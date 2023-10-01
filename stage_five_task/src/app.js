@@ -1,28 +1,23 @@
 import express from "express";
-import morgan from "morgan";
 import cors from "cors";
-import helmet from "helmet";
+import morgan from "morgan";
+// import Deepgram from "@deepgram/sdk";
+import { config } from "dotenv";
+config();
 
 const app = express();
+import videoRoutes from "./route/video.route.js";
+// const deepgram = new Deepgram.Deepgram(process.env.DEEPGRAM_API_KEY);
 
-// import routes
-import uploadRouter from "./routes/upload.route.js";
-
-// express middleware
+// middleware
 app.use(morgan("dev"));
 app.use(cors());
-app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// express routes
-app.get("/", (req, res) => {
-  res.json({
-    message: "🦄🌈✨Welcome! Upload a Video 🌈✨🦄",
-  });
-});
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// mount routers
-app.use("/api", uploadRouter);
+// mount routes
+app.use("/api", videoRoutes);
 
 export default app;
